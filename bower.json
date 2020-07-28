@@ -1,0 +1,21 @@
+{
+  "name": "js-datavisualisation-challenge",
+  "homepage": "https://github.com/Melissa-Fruit/js-datavisualisation-challenge",
+  "authors": [
+    "Melissa-Fruit <melissafruit1981@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chart.js": "^2.9.3"
+  }
+}

@@ -1,3 +1,8 @@
+
+$.getScript(script.js, function(){
+	alert(La script a bien été chargé.);
+   });
+
 /**
  * User-agent detection
  */
