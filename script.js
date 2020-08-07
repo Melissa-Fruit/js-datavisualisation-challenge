@@ -1,47 +1,53 @@
-// Remote data, in real-time, via ajax
-
+// Tableau 0 Remote data, in real-time, via ajax id mychart3 en desous he h1
+//créer canvas
 let canvasA = document.createElement("canvas");
-var node = document.createTextNode("This is new.");
-canvasA.appendChild(node);
+document.body.appendChild(canvasA);
 
-var elementA = document.getElementById("bodyContent");
-var child = document.getElementById("mw-content-text");
-elementA.insertBefore(canvasA, child);
+//créer element et son enfant pour inserer le canvas dans le DOM
+let elementA = document.getElementById("bodyContent");
+let childA = document.getElementById("mw-content-text");
+elementA.insertBefore(canvasA, childA);
 
+//créer un id  au tag canvas avec setAttribute et inserer dans le DOM
 document.getElementsByTagName("canvas")[0].setAttribute("id", "myChart3");
 
 //inline data Tableau 1
+//créer canvas
 let canvas = document.createElement("canvas");
-
 document.body.appendChild(canvas);
 
-var element = document.getElementById("mw-content-text");
-var child = document.getElementById("table1");
+//créer element et son enfant pour inserer le canvas dans le DOM
+let element = document.getElementById("mw-content-text");
+let child = document.getElementById("table1");
 element.insertBefore(canvas, child);
 
+//créer un id  au tag canvas avec setAttribute et inserer dans le DOM
 document.getElementsByTagName("canvas")[1].setAttribute("id", "myChart1");
+//créer une variable qui apelle l'id pour utiliser dans chart.js
+let ctx = document.getElementById("myChart1").getContext("2d");
 
 //inline Data Tableau 2
-
+//créer canvas
 let canvas1 = document.createElement("canvas");
-var node = document.createTextNode("This is new.");
-canvas1.appendChild(node);
+document.body.appendChild(canvas1);
 
-var element1 = document.getElementById("mw-content-text");
-var child1 = document.getElementById("table2");
+//créer element et son enfant pour inserer le canvas sdans le DOM
+let element1 = document.getElementById("mw-content-text");
+let child1 = document.getElementById("table2");
 element1.insertBefore(canvas1, child1);
 
+//créer un id  au tag canvas avec setAttribute et inserer dans le DOM
 document.getElementsByTagName("canvas")[2].setAttribute("id", "myChart2");
-
+//créer une variable qui apelle l'id pour utiliser dans chart.js
 let doc = document.getElementById("myChart2");
 
+//créer un id  au tag canvas avec setAttribute et inserer dans le DOM
 document.getElementsByTagName("tbody")[0].setAttribute("id", "myData");
 
-// tableau chart.js pour le canvas id = myChart1
-
+// créer une variable qui fait appel a l'id table1 pour utiliser pour convertir en json
 let table = document.getElementById("table1");
-let table2 = document.getElementById("table2");
 
+//fonction pour convertir en json tableau1
 function tableToJson(table) {
   let data = [];
   for (i = 1; i < table.rows.length; i++) {
@@ -56,23 +62,7 @@ function tableToJson(table) {
 }
 table = tableToJson(table);
 
-//tableau 2
-function tableToJson(table2) {
-  let data = [];
-  for (i = 1; i < table2.rows.length; i++) {
-    let tableRow = table2.rows[i];
-    let rowData = [];
-    for (j = 1; j < tableRow.cells.length; j++) {
-      rowData.push(tableRow.cells[j].innerHTML);
-    }
-    data.push(rowData);
-  }
-  return data;
-}
-table2 = tableToJson(table2);
-
-//fonction pour supprimer l'index choisi
-
+//fonction pour supprimer l'index choisi (pas besoin de l'index 0 dans tableau1)
 const arrayWithoutElementAtIndex = function (arr, index) {
   let ret = arr.slice(); //make a copy
   ret.splice(index, 1); //remove item from given index
@@ -80,7 +70,6 @@ const arrayWithoutElementAtIndex = function (arr, index) {
 };
 
 //fonction pour transformer l'aray de string en float et remplacer les virgule par des points
-
 function arrayStringToFloat(table) {
   data = [];
   for (i = 0; i < table.length; i++) {
@@ -100,33 +89,8 @@ function randomColor() {
 
 console.log(randomColor());
 
-function tableAllZero(arr) {
-  let data = [];
-  for (i = 0; i < arr.length; i++) {
-    data[i] = arr[i][0];
-  }
-  data[7] = "England & Wales (uk)";
-  return data;
-}
-
-function tableAllOne(arr) {
-  let data = [];
-  for (i = 0; i < arr.length; i++) {
-    data[i] = arr[i][1];
-  }
-  return data;
-}
-
-function tableAllTwo(arr) {
-  let data = [];
-  for (i = 0; i < arr.length; i++) {
-    data[i] = arr[i][2];
-  }
-  return data;
-}
-let ctx = document.getElementById("myChart1").getContext("2d");
-
-var myChart = new Chart(ctx, {
+// tableau chart.js pour le canvas id = myChart1
+const myChart = new Chart(ctx, {
   type: "line",
   data: {
     labels: arrayWithoutElementAtIndex(table[0], 0),
@@ -350,21 +314,63 @@ var myChart = new Chart(ctx, {
     },
   },
 });
-// ne fonctione pas encore
+// créer une variable qui fait appel a l'id table2 (pour convertir en json) tableau2
+let table2 = document.getElementById("table2");
 
-let myChart2 = new Chart(doc, {
+//fonction pour convertir en json tableau2
+function tableToJson(table2) {
+  let data = [];
+  for (i = 1; i < table2.rows.length; i++) {
+    let tableRow = table2.rows[i];
+    let rowData = [];
+    for (j = 1; j < tableRow.cells.length; j++) {
+      rowData.push(tableRow.cells[j].innerHTML);
+    }
+    data.push(rowData);
+  }
+  return data;
+}
+table2 = tableToJson(table2);
+
+//fonction pour ajouter England & Wales (uk) dans tableau2 avec id table2
+function tableAllZero(arr) {
+  let data = [];
+  for (i = 0; i < arr.length; i++) {
+    data[i] = arr[i][0];
+  }
+  data[7] = "England & Wales (uk)";
+  return data;
+}
+//fonction pour ajouter la data index[1] dans tableau2 avec id table2
+function tableAllOne(arr) {
+  let data = [];
+  for (i = 0; i < arr.length; i++) {
+    data[i] = arr[i][1];
+  }
+  return data;
+}
+//fonction pour ajouter la data index[2] dans tableau2 avec id table2
+function tableAllTwo(arr) {
+  let data = [];
+  for (i = 0; i < arr.length; i++) {
+    data[i] = arr[i][2];
+  }
+  return data;
+}
+// tableau chart.js pour le canvas id = myChart2
+const myChart2 = new Chart(doc, {
   type: "bar",
   data: {
     labels: tableAllZero(table2),
     datasets: [
       {
         label: "2007-09",
-        backgroundColor: "#3e95cd",
+        backgroundColor: randomColor(),
         data: tableAllOne(table2),
       },
       {
         label: "2010-12",
-        backgroundColor: "#8e5ea2",
+        backgroundColor: randomColor(),
         data: tableAllTwo(table2),
       },
     ],
@@ -376,3 +382,95 @@ let myChart2 = new Chart(doc, {
     },
   },
 });
+//Remote data, in real-time, via ajax
+//créer une variable pour l'url
+const data_url = "https://canvasjs.com/services/data/datapoints.php";
+
+//créer 2 variable, 1 pour l'axe x et une pour l'axe y
+const xxs = [];
+const yys = [];
+
+// fonction getData pour  faire appel a l'url avec fetch
+async function getData() {
+  const response = await fetch(data_url);
+  const data = await response.json();
+  console.log(data);
+  const xs = data.map(function (e) {
+    return parseInt(e["0"]);
+  });
+  console.log(xs);
+  for (u = 0; u < 10; u++) {
+    xxs.push(xs[u]);
+  }
+  const ys = data.map(function (e) {
+    return parseInt(e["1"]);
+  });
+  console.log(ys);
+  for (u = 0; u < 10; u++) {
+    yys.push(ys[u]);
+  }
+}
+console.log(yys);
+
+getData();
+
+// setinterval pour  rafraichir chaque seconde
+let timerData1 = setInterval(() => getData(), 1000);
+
+// tableau chart.js pour le canvas id = myChart3
+const chart = new Chart(document.getElementById("myChart3"), {
+  type: "line",
+  data: {
+    labels: xxs,
+    datasets: [
+      {
+        data: yys,
+        label: "EU",
+        borderColor: randomColor(),
+        fill: false,
+      },
+    ],
+  },
+  options: {
+    title: {
+      display: true,
+      text: " crime and criminal justice in the European Union",
+    },
+  },
+});
+// fonction addData pour ajouter la data et le set interval pour rafraichire chaque seconde
+function addData() {
+  chart.data.datasets[0].data = yys;
+  chart.update();
+}
+let timerData2 = setInterval(() => addData(), 1000);
+//ajax - Chart differente possibilité de faire appel a l'url avec fetch
+/* fetch
+let url = "https://canvasjs.com/services/data/datapoints.php";
+
+fetch(url)
+  .then((res) => res.json())
+  .then((out) => {
+    console.log("Checkout this JSON! ", out);
+  })
+  .catch((err) => {
+    throw err;
+  });
+const resultA = data.filter(function (item) {
+  return item[1];
+});
+
+/ ou
+
+let url = "https://canvasjs.com/services/data/datapoints.php";
+async function getData() {
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  console.log(data[1]);
+}
+getData();
+const result = data.filter(function (item) {
+  return item[1];
+});
+*/
