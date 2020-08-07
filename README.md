@@ -40,7 +40,7 @@ This consolidation challenge will help you assess your ability to solve a proble
     * to use the setInterval for refrching every second
 * insert the graph at the begining of the document
 
-## my recources for this excersise 
+## My recources for this excersise 
 
 * [Working with Data and APIs in JavaScript](https://www.youtube.com/watch?v=DbcLg8nRWEg&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X)
 * [chart.js](https://www.chartjs.org/)
