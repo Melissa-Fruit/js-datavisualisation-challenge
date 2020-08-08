@@ -54,4 +54,10 @@ This consolidation challenge will help you assess your ability to solve a proble
 * [Olivier](https://github.com/OlivierPeeters73)
 * [Bastien](https://github.com/loonyT)
 
+## biggest bug
+
+I had to modifie the html code when I add the script tag, to get it get work on the git page.
+
+It worked on local, but bugged on github so I put a cdn in thr html.
+
 
