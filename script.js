@@ -438,7 +438,7 @@ const chart = new Chart(document.getElementById("myChart3"), {
     },
   },
 });
-// fonction addData pour ajouter la data et le set interval pour rafraichire chaque seconde
+// fonction addData pour ajouter la data et le set interval
 function addData() {
   chart.data.datasets[0].data = yys;
   chart.update();
